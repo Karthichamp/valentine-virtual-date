@@ -3,196 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Virtual Date 💕</title>
+<title>Our Virtual Date - Baby 💖 Forever</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at bottom,#0f2027,#203a43,#000);
+  color:white;
+  overflow-x:hidden;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ffafcc, #ffc8dd);
-  text-align: center;
-  color: white;
-  overflow-x: hidden;
+/* 🌌 Starfield */
+.stars{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  animation:moveStars 120s linear infinite;
+  z-index:-3;
+}
+@keyframes moveStars{
+  from{background-position:0 0;}
+  to{background-position:10000px 5000px;}
 }
 
-h1, h2 {
-  font-family: 'Dancing Script', cursive;
+/* 💖 Floating Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp 10s linear infinite;
+  opacity:0.6;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);}
+  to{transform:translateY(-110vh);}
 }
 
-section {
-  height: 100vh;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  animation: fadeIn 1s ease forwards;
+section{
+  min-height:100vh;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+  animation:fadeIn 2s ease forwards;
+}
+section.active{display:flex;}
+
+h1,h2{font-family:'Dancing Script',cursive;}
+
+button{
+  margin:15px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ffafcc;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.4s;
+}
+button:hover{transform:scale(1.1);}
+
+img{
+  width:260px;
+  border-radius:20px;
+  margin:20px;
+  box-shadow:0 0 30px rgba(255,255,255,0.4);
 }
 
-section.active {
-  display: flex;
+#musicBtn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  font-size:20px;
 }
 
-button {
-  margin: 10px;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 30px;
-  background: white;
-  color: #c9184a;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
 }
 
-button:hover {
-  transform: scale(1.1);
+/* 🎆 Fireworks */
+.firework{
+  position:fixed;
+  font-size:25px;
+  animation:explode 2s ease-out forwards;
 }
-
-.options {
-  margin-top: 30px;
+@keyframes explode{
+  0%{transform:scale(0);}
+  50%{transform:scale(2);}
+  100%{opacity:0;transform:scale(3);}
 }
-
-#summary {
-  margin-top: 30px;
-  font-size: 18px;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* Confetti */
-@keyframes confettiFall {
-  to {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<div class="stars"></div>
+
+<button id="musicBtn">🎵</button>
+
+<audio id="bgMusic" loop>
+<source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎬 INTRO -->
 <section id="intro" class="active">
-  <h1>Tonight... It's Just Us 💕</h1>
-  <p>Let’s go on a little virtual date together.</p>
-  <button onclick="nextStep('outfit')">Start Our Date 💖</button>
+<h1 id="typewriter"></h1>
+<button onclick="next('outfit')">Begin Our Forever ✨</button>
 </section>
 
-<!-- OUTFIT -->
+<!-- 👗 OUTFIT -->
 <section id="outfit">
-  <h2>Choose Your Outfit 👗</h2>
-  <div class="options">
-    <button onclick="choose('Elegant Dress 💃')">Elegant Dress 💃</button>
-    <button onclick="choose('Cute Casual 🌸')">Cute Casual 🌸</button>
-    <button onclick="choose('Red Romantic Gown ❤️')">Red Romantic Gown ❤️</button>
-  </div>
+<h2>Baby 💖</h2>
+<p>You’ve been glowing since 1-Jan-2026.</p>
+<img src="photos/outfit.jpg">
+<button onclick="next('restaurant')">You Look Perfect 😍</button>
 </section>
 
-<!-- RESTAURANT -->
+<!-- 🍽 RESTAURANT -->
 <section id="restaurant">
-  <h2>Where Should We Go? 🍽</h2>
-  <div class="options">
-    <button onclick="choose('Candlelight Rooftop 🌆')">Candlelight Rooftop 🌆</button>
-    <button onclick="choose('Beach Dinner 🌊')">Beach Dinner 🌊</button>
-    <button onclick="choose('Cozy Cafe ☕')">Cozy Cafe ☕</button>
-  </div>
+<h2>Just Us Under The Stars 🌌</h2>
+<img src="photos/restaurant.jpg">
+<button onclick="next('dessert')">This Night Is Magical 💕</button>
 </section>
 
-<!-- DESSERT -->
+<!-- 🍰 DESSERT -->
 <section id="dessert">
-  <h2>Pick Our Dessert 🍰</h2>
-  <div class="options">
-    <button onclick="choose('Chocolate Lava Cake 🍫')">Chocolate Lava Cake 🍫</button>
-    <button onclick="choose('Strawberry Cheesecake 🍓')">Strawberry Cheesecake 🍓</button>
-    <button onclick="choose('Ice Cream Sundae 🍨')">Ice Cream Sundae 🍨</button>
-  </div>
+<h2>Sweet Like You 🍰</h2>
+<img src="photos/dessert.jpg">
+<button onclick="next('final')">Almost There ❤️</button>
 </section>
 
-<!-- FINAL -->
+<!-- 💖 FINAL -->
 <section id="final">
-  <h2>Our Perfect Date 💕</h2>
-  <div id="summary"></div>
-  <br>
-  <button onclick="showProposal()">Something Important 💍</button>
+<img src="photos/us.jpg">
+<p style="max-width:500px;">
+Baby, since 1-Jan-2026,  
+every day with you has felt like a dream I never want to wake from.
+</p>
+<button onclick="next('proposal')">One Last Thing 💍</button>
 </section>
 
-<!-- PROPOSAL -->
+<!-- 💍 PROPOSAL -->
 <section id="proposal">
-  <h2>Being with you feels magical ✨</h2>
-  <p>I don't need a perfect place... just you.</p>
-  <br>
-  <button onclick="finalYes()">Will You Always Be Mine? 💖</button>
+<h1>Baby 💖</h1>
+<p style="max-width:600px;font-size:20px;">
+If I had to choose again,  
+I would choose you in every lifetime.  
+Through every universe.  
+Through every version of us.
+</p>
+<h2>Will You Stay With Me Forever?</h2>
+<button onclick="foreverYes()">YES ❤️</button>
 </section>
 
 <script>
+/* 🎵 Music */
+const music=document.getElementById("bgMusic");
+document.getElementById("musicBtn").onclick=()=>{
+if(music.paused){music.play();}else{music.pause();}
+};
 
-let selections = [];
-let steps = ["intro","outfit","restaurant","dessert","final","proposal"];
-let currentStep = 0;
+/* 💖 Floating Hearts Generator */
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*window.innerWidth+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),10000);
+},1500);
 
-function nextStep(stepId) {
-  document.getElementById(steps[currentStep]).classList.remove("active");
-  currentStep++;
-  document.getElementById(stepId).classList.add("active");
+/* 🎬 Typewriter */
+const text="Baby... From 1-Jan-2026, You Became My Forever 💖";
+let i=0;
+function typeWriter(){
+if(i<text.length){
+document.getElementById("typewriter").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeWriter,80);
+}
+}
+typeWriter();
+
+/* 🔄 Section Navigation */
+let steps=["intro","outfit","restaurant","dessert","final","proposal"];
+let current=0;
+function next(id){
+document.getElementById(steps[current]).classList.remove("active");
+current++;
+document.getElementById(id).classList.add("active");
 }
 
-function choose(option) {
-  selections.push(option);
-  nextStep(steps[currentStep + 1]);
+/* 🎆 Fireworks Ending */
+function foreverYes(){
+document.getElementById("proposal").innerHTML=`
+<h1>Forever & Always ❤️</h1>
+<p>Baby, you are my infinity.</p>
+`;
 
-  if (steps[currentStep] === "final") {
-    showSummary();
-  }
+for(let i=0;i<30;i++){
+const fire=document.createElement("div");
+fire.className="firework";
+fire.innerHTML="✨";
+fire.style.left=Math.random()*window.innerWidth+"px";
+fire.style.top=Math.random()*window.innerHeight+"px";
+document.body.appendChild(fire);
+setTimeout(()=>fire.remove(),2000);
 }
-
-function showSummary() {
-  const summary = document.getElementById("summary");
-  summary.innerHTML = `
-    💃 Outfit: ${selections[0]} <br>
-    🍽 Location: ${selections[1]} <br>
-    🍰 Dessert: ${selections[2]} <br><br>
-    I couldn't imagine a better night... 💕
-  `;
 }
-
-function showProposal() {
-  nextStep("proposal");
-}
-
-function finalYes() {
-  document.getElementById("proposal").innerHTML = `
-    <h2>Forever and Always ❤️</h2>
-    <p>You are my favorite person in every universe.</p>
-  `;
-  launchConfetti();
-}
-
-function launchConfetti() {
-  for (let i = 0; i < 80; i++) {
-    const confetti = document.createElement("div");
-    confetti.innerHTML = "💖";
-    confetti.style.position = "fixed";
-    confetti.style.left = Math.random() * window.innerWidth + "px";
-    confetti.style.top = "-20px";
-    confetti.style.fontSize = Math.random() * 20 + 10 + "px";
-    confetti.style.animation = "confettiFall 3s linear forwards";
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 3000);
-  }
-}
-
 </script>
 
 </body>
